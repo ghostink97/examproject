@@ -87,7 +87,11 @@ body {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     }
 
+    .Icon {
+        width: 50px;
+        padding-left: 30px;
 
+    }
 
 
 }
@@ -95,4 +99,10 @@ body {
 
 
 /*///// large screen styling /////////*/
-@media all and (min-width:1080px) {}
+@media all and (min-width:1080px) {
+
+    .Icon {
+        padding-right: 30px;
+
+    }
+}
