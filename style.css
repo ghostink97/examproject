@@ -16,7 +16,9 @@ body {
 
 .NavBar {
     background-color: black;
-    height: 4em;
+    height: 5em;
+
+
 }
 
 .logoImg {
@@ -24,7 +26,14 @@ body {
     padding-top: 3px;
     padding-left: 13px;
     margin: 6px;
+    float: left;
 }
+
+.navBarIcons {
+    float: right;
+}
+
+
 
 .FooterBox {
     background-color: black;
