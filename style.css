@@ -14,6 +14,18 @@ body {
 
 }
 
+.NavBar {
+    background-color: black;
+    height: 4em;
+}
+
+.logoImg {
+    width: 30%;
+    padding-top: 3px;
+    padding-left: 13px;
+    margin: 6px;
+}
+
 .FooterBox {
     background-color: black;
     width: 100%;
@@ -93,6 +105,10 @@ body {
 
     }
 
+    .logoImg {
+        width: 15%;
+    }
+
 
 }
 
@@ -104,5 +120,9 @@ body {
     .Icon {
         padding-right: 30px;
 
+    }
+
+    .logoImg {
+        width: 12%;
     }
 }
