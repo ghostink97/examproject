@@ -16,7 +16,7 @@ body {
 
 .NavBar {
     background-color: black;
-    height: 5em;
+    height: 4em;
 
 
 }
@@ -31,8 +31,19 @@ body {
 
 .navBarIcons {
     float: right;
+    padding-right: 26px;
+    padding-top: 14px;
+
 }
 
+.searchIcon {
+    width: 35px;
+    margin-right: 25px;
+}
+
+.shopIcon {
+    width: 35px;
+}
 
 
 .FooterBox {
