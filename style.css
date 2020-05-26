@@ -1,11 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+*, * ::before, *::after{
+    font-family: 'Roboto', sans-serif;
+}
+
+:root{
+    --light-gray: #F5F5F5;
+    --white: #FAFAFA;
+    --blue: #4D65CB;
+
+}
+
 html {
     height: 100%;
 }
 
 body {
-    background-color: #FAFAFA;
+    background-color: var(--white);
     margin: 0;
     padding: 0;
     display: flex;
@@ -20,6 +31,72 @@ body {
 
 
 }
+
+#main{
+    margin: 0 auto;
+    background-color: var(--white);
+    box-sizing: border-box;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+
+}
+
+#cCon{
+    text-align: center;
+    width: 800px;
+    max-width: 80%;
+    background-color: var(--white);
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px  2px;
+}
+
+.btn-grid{
+    display:grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+}
+ .btn {
+    background-color: var(--light-gray);
+    border: 1px solid var(--white);
+    border-radius: 5px;
+    padding: 5px 10px;
+    outline:none;
+    color:var(--blue);
+ }
+ .btn:hover{
+     border-color: rgb(152, 152, 152);
+     background-color: rgb(216, 216, 216);
+     color: rgb(33, 56, 159);
+ }
+
+ .selectedBtn{
+    border-color: rgb(152, 152, 152);
+    background-color: rgb(216, 216, 216);
+    color: rgb(33, 56, 159);
+}
+
+ #start-btn, #next-btn {
+     font-size: 1.5rem;
+     font-weight: bold;
+     padding: 10px, 20px;
+ }
+
+.controls{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.hide{
+    display: none;
+}
+
+
 
 .logoImg {
     width: 30%;
@@ -60,7 +137,6 @@ body {
     color: #F5F5F5;
     text-align: center;
     padding: 1em;
-    font-family: 'Roboto', sans-serif;
     font-size: 12px;
     font-weight: 300;
     padding: 1em;
@@ -84,30 +160,25 @@ body {
 
 }
 
+
+
 .Credits {
-    color: #F5F5F5;
+    color: var(--light-gray);
     margin: auto;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
     font-size: 12px;
     font-weight: 300;
+    padding-bottom: 2em;
 }
 
 
 .Creditlink {
-    color: #F5F5F5;
+    color: var(--light-gray);
     font-size: 12px;
-    font-family: 'Roboto', sans-serif;
 }
 
 
-.CreditBox {
-    display: grid;
-    grid-gap: 10px;
-    padding: 20px;
-    font-weight: 300;
 
-}
 
 .Item {
     justify-self: center;
