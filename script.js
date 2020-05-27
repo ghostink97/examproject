@@ -21,6 +21,7 @@ function startQuiz() {
     Qcontent.classList.remove("hide");
     StartScreen.classList.add("hide");
     currentQuestionIndex = 0;
+    localStorage.clear();
     setNext()
 }
 
@@ -29,11 +30,12 @@ function setNext() {
     showQuestion(questions[currentQuestionIndex]);
 }
 
-function showQuestion(monkey) {
-    qElm.innerText = monkey.q
-    monkey.answers.forEach(ans => {
+function showQuestion(oneQ) {
+    qElm.innerText = oneQ.q
+    oneQ.answers.forEach(ans => {
         const btn = document.createElement("button")
         btn.innerText = ans.text
+        btn.classList.add(ans.tag)
         btn.classList.add("btn")
         btn.addEventListener("click", selectAns)
         aElm.appendChild(btn)
@@ -51,25 +53,72 @@ function selectAns(e) {
     const selectedBtn = e.target
     selectedBtn.classList.add("selectedBtn")
     console.log(currentQuestionIndex)
+    let myTags = ""
+    if (!localStorage.getItem('tags')) {
+        myTags = selectedBtn.classList[0];
+    } else {
+
+        let currentTags = localStorage.getItem("tags");
+        myTags = currentTags + "," + selectedBtn.classList[0]
+    }
+    localStorage.setItem('tags', myTags);
     if (currentQuestionIndex < questions.length - 1) {
         nextBtn.classList.remove("hide")
     } else {
+        let tagArray = myTags.split(",")
+        //console.log(tagArray)
         startBtn.innerText = "Finish"
         startBtn.classList.remove("hide")
-        startBtn.addEventListener('click', showEndScreen);
+        startBtn.addEventListener('click', () => {
+            console.log(tagArray)
+            console.log("this is the end")
+            Qcontent.classList.add("hide");
+            endScreen.classList.remove("hide")
+        });
     }
 }
 
-function showEndScreen() {
-    console.log("this is the end")
-    Qcontent.classList.add("hide");
-    endScreen.classList.remove("hide")
-}
+// fetch rest db area
+
+
+const baseURL = "https://examproject-2dfd.restdb.io/rest/Drones";
+const headers = {
+    "Content-Type": "application/json; charset=utf-8",
+    "x-apikey": "5eb14f804064fd380416528c",
+    "cache-control": "no-cache"
+};
+
+fetch(baseURL, {
+    method: "get",
+    headers: headers
+})
+    .then(e => e.json())
+//.then something else
+
+
+function showDrone(drone) {
+    console.log(drone);
+    let template = document.querySelector('template').content;
+    let clone = template.cloneNode(true);
+    clone.querySelector(".cat-name").innerHTML = drone.catname;
+    clone.querySelector(".prod-title").innerHTML = drone.title;
+    clone.querySelector(".prod-desc").innerHTML = drone.description;
+    clone.querySelector(".link").innerHTML = drone.link;
+    clone.querySelector(".price").innerHTML = drone.price;
+    clone.querySelector(".prod-img").src = "https://examproject-2dfd.restdb.io/media/" + drone.image[0];
+    document.querySelector("main").appendChild(clone);
+};
+
+
 
 /*retry sect
         startBtn.innerText = "Retry"
         startBtn.classList.remove("hide")
+        localStorage.clear();
+        console.clear();
+
 */
+console.clear
 
 const questions = [
     {
