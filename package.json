@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ourangelofsorrows/examproject/issues"
   },
-  "homepage": "https://github.com/ourangelofsorrows/examproject#readme"
+  "homepage": "https://github.com/ourangelofsorrows/examproject#readme",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
 }
