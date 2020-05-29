@@ -67,11 +67,13 @@ body {
     padding: 5px 10px;
     outline:none;
     color:var(--blue);
+    cursor: pointer;
  }
  .btn:hover{
      border-color: rgb(152, 152, 152);
      background-color: rgb(216, 216, 216);
      color: rgb(33, 56, 159);
+     cursor: pointer;
  }
 
  .selectedBtn{
@@ -96,6 +98,32 @@ align-items: center;
     display: none;
 }
 
+#imgofdrone{
+    width:50%;
+}
+#prod-btn{
+    background: #4D65CB;
+    border: 0px none;
+    color: #FFF;
+    display: inline-block;
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    transition: filter 0.15s ease-in-out 0s;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    width: auto;
+}
+
+#descript-text{
+    text-align: center;
+}
+#prod-link{
+    color: var(--white);
+    text-decoration: none;
+}
 
 
 .logoImg {

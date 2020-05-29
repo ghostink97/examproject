@@ -8,6 +8,8 @@ const qElm = document.querySelector("#question");
 const aElm = document.querySelector("#answer-btns");
 const endScreen = document.querySelector("#endscreen");
 const StartScreen = document.querySelector("#startscreen");
+let droneMatch = "";
+let priceError = false;
 
 startBtn.addEventListener("click", startQuiz);
 nextBtn.addEventListener("click", () => {
@@ -22,6 +24,8 @@ function startQuiz() {
     StartScreen.classList.add("hide");
     currentQuestionIndex = 0;
     localStorage.clear();
+    priceError = false;
+    droneMatch = "";
     setNext()
 }
 
@@ -73,41 +77,107 @@ function selectAns(e) {
             console.log(tagArray)
             console.log("this is the end")
             Qcontent.classList.add("hide");
-            endScreen.classList.remove("hide")
+            findDroneMatch(tagArray);
+            loadDrones();
         });
     }
 }
 
 // fetch rest db area
 
+function findDroneMatch(tagArray) {
+    console.log(tagArray)
+    if (tagArray[2] == "transport") {
+        droneMatch = "buget-hobby-drone";
+    } else if (tagArray[2] == "camera") {
+        droneMatch = "expensive-hobby-drone"
+    } else if (tagArray[2] = "flightAndRange") {
+        droneMatch = "budget-photography-drone"
+    } if (tagArray[0] == "hobby") {
+        if (tagArray[1] == "cheapest") {
+            droneMatch = "buget-hobby-drone"
+        } else {
+            droneMatch = "expensive-hobby-drone"
+        }
+    } else if (tagArray[0] == "photography") {
+        if (tagArray[1] == "cheapest") {
+            priceError = true
+            //alert("No DroneMatch at current pricepoint. Matched you with the cheapest drone that fits your criteria!");
+            droneMatch = "budget-photography-drone"
+        } else if (tagArray[1] == "lowerMidrange") {
+            droneMatch = "budget-photography-drone"
+        } else if (tagArray[1] == "higherMidrange" || "mostExpensive") {
+            droneMatch = "expensive-photography-drone"
+        }
+    } else if (tagArray[0] == "film") {
+        if (tagArray[1] == "cheapest") {
+            priceError = true
+            //alert("No DroneMatch at current pricepoint. Matched you with the cheapest drone that fits your criteria!");
+            droneMatch = "budget-film-drone"
+        } else if (tagArray[1] == "lowerMidrange") {
+            priceError = true
+            //alert("No DroneMatch at current pricepoint. Matched you with the cheapest drone that fits your criteria!");
+            droneMatch = "budget-film-drone"
+        } else if (tagArray[1] == "higherMidrange" || "mostExpensive") {
+            droneMatch = "expensive-film-drone"
+        }
+    } else if (tagArray[0] == "ent") {
+        if (tagArray[1] == "cheapest") {
+            priceError = true
+            //alert("No DroneMatch at current pricepoint. Matched you with the cheapest drone that fits your criteria!");
+            droneMatch = "budget-ent-drone"
+        } else if (tagArray[1] == "lowerMidrange") {
+            priceError = true
+            //alert("No DroneMatch at current pricepoint. Matched you with the cheapest drone that fits your criteria!");
+            droneMatch = "budget-ent-drone"
+        } else if (tagArray[1] == "higherMidrange" || "mostExpensive") {
+            droneMatch = "expensive-ent-drone"
+        }
+    }
 
-const baseURL = "https://examproject-2dfd.restdb.io/rest/Drones";
-const headers = {
-    "Content-Type": "application/json; charset=utf-8",
-    "x-apikey": "5eb14f804064fd380416528c",
-    "cache-control": "no-cache"
-};
+}
 
-fetch(baseURL, {
-    method: "get",
-    headers: headers
-})
-    .then(e => e.json())
-//.then something else
+function loadDrones() {
+
+    const baseURL = "https://examproject-2dfd.restdb.io/rest/Drones";
+    const headers = {
+        "Content-Type": "application/json; charset=utf-8",
+        "x-apikey": "5eb14f804064fd380416528c",
+        "cache-control": "no-cache"
+    };
+    fetch(baseURL, {
+        method: "get",
+        headers: headers
+    })
+        .then(e => e.json())
+        //.then(drones => drones.forEach(drone => console.log(drone)))
+        .then(drone => findMatch(drone))
+}
+
+function checkForPriceError() {
+    if (priceError == true) {
+        alert("No DroneMatch at current pricepoint. Matched you with the cheapest drone that fits your criteria!");
+    }
+}
 
 
-function showDrone(drone) {
-    console.log(drone);
-    let template = document.querySelector('template').content;
-    let clone = template.cloneNode(true);
-    clone.querySelector(".cat-name").innerHTML = drone.catname;
-    clone.querySelector(".prod-title").innerHTML = drone.title;
-    clone.querySelector(".prod-desc").innerHTML = drone.description;
-    clone.querySelector(".link").innerHTML = drone.link;
-    clone.querySelector(".price").innerHTML = drone.price;
-    clone.querySelector(".prod-img").src = "https://examproject-2dfd.restdb.io/media/" + drone.image[0];
-    document.querySelector("main").appendChild(clone);
-};
+function findMatch(drones) {
+    for (i = 0; i < drones.length; i++) {
+        if (
+            drones[i].tag == droneMatch) {
+            console.log(drones[i]);
+            checkForPriceError();
+            endScreen.classList.remove("hide")
+            document.querySelector("#endTitle").innerText = "Your DroneMatch is " + drones[i].title;
+            document.querySelector("#descript-text").innerText = drones[i].description;
+            document.querySelector("#imgofdrone").src = "https://examproject-2dfd.restdb.io/media/" + drones[i].image;
+            document.querySelector("#prod-link").href = drones[i].link;
+            document.querySelector("#price").innerText = drones[i].price + "kr.";
+        }
+    }
+}
+
+
 
 
 
@@ -116,7 +186,7 @@ function showDrone(drone) {
         startBtn.classList.remove("hide")
         localStorage.clear();
         console.clear();
-
+ 
 */
 console.clear
 
@@ -126,19 +196,19 @@ const questions = [
         answers: [
             {
                 text: "As a hobby/for personal use",
-                tag: "hobbyist"
+                tag: "hobby"
             },
             {
                 text: "For Professional Photography",
-                tag: "photographer"
+                tag: "photography"
             },
             {
                 text: "For High Quality Video Recording (film production)",
-                tag: "cinematographer"
+                tag: "film"
             },
             {
                 text: "For Work (i.e. farming, firefigting, construction)",
-                tag: "industry"
+                tag: "ent"
             }
 
         ]
@@ -168,11 +238,11 @@ const questions = [
         answers: [
             {
                 text: "Transportability (how light it is, can it be folded?",
-                tag: "Transport"
+                tag: "transport"
             },
             {
                 text: "Best Camera (highest resolution)",
-                tag: "photographer"
+                tag: "camera"
             },
             {
                 text: "Best Flight (best batery life or signal range)",
