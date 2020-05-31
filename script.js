@@ -26,11 +26,12 @@ function startQuiz() {
     localStorage.clear();
     priceError = false;
     droneMatch = "";
+    console.clear
     setNext()
 }
 
 function setNext() {
-    ShouldveUsedReact()
+    nextQuestionSet()
     showQuestion(questions[currentQuestionIndex]);
 }
 
@@ -46,7 +47,7 @@ function showQuestion(oneQ) {
     });
 }
 
-function ShouldveUsedReact() {
+function nextQuestionSet() {
     nextBtn.classList.add("hide")
     while (aElm.firstChild) {
         aElm.removeChild(aElm.firstChild)
@@ -70,7 +71,6 @@ function selectAns(e) {
         nextBtn.classList.remove("hide")
     } else {
         let tagArray = myTags.split(",")
-        //console.log(tagArray)
         startBtn.innerText = "Finish"
         startBtn.classList.remove("hide")
         startBtn.addEventListener('click', () => {
@@ -83,7 +83,7 @@ function selectAns(e) {
     }
 }
 
-// fetch rest db area
+
 
 function findDroneMatch(tagArray) {
     console.log(tagArray)
@@ -102,7 +102,6 @@ function findDroneMatch(tagArray) {
     } else if (tagArray[0] == "photography") {
         if (tagArray[1] == "cheapest") {
             priceError = true
-            //alert("No DroneMatch at current pricepoint. Matched you with the cheapest drone that fits your criteria!");
             droneMatch = "budget-photography-drone"
         } else if (tagArray[1] == "lowerMidrange") {
             droneMatch = "budget-photography-drone"
@@ -112,11 +111,9 @@ function findDroneMatch(tagArray) {
     } else if (tagArray[0] == "film") {
         if (tagArray[1] == "cheapest") {
             priceError = true
-            //alert("No DroneMatch at current pricepoint. Matched you with the cheapest drone that fits your criteria!");
             droneMatch = "budget-film-drone"
         } else if (tagArray[1] == "lowerMidrange") {
             priceError = true
-            //alert("No DroneMatch at current pricepoint. Matched you with the cheapest drone that fits your criteria!");
             droneMatch = "budget-film-drone"
         } else if (tagArray[1] == "higherMidrange" || "mostExpensive") {
             droneMatch = "expensive-film-drone"
@@ -124,17 +121,14 @@ function findDroneMatch(tagArray) {
     } else if (tagArray[0] == "ent") {
         if (tagArray[1] == "cheapest") {
             priceError = true
-            //alert("No DroneMatch at current pricepoint. Matched you with the cheapest drone that fits your criteria!");
             droneMatch = "budget-ent-drone"
         } else if (tagArray[1] == "lowerMidrange") {
             priceError = true
-            //alert("No DroneMatch at current pricepoint. Matched you with the cheapest drone that fits your criteria!");
             droneMatch = "budget-ent-drone"
         } else if (tagArray[1] == "higherMidrange" || "mostExpensive") {
             droneMatch = "expensive-ent-drone"
         }
     }
-
 }
 
 function loadDrones() {
@@ -150,7 +144,6 @@ function loadDrones() {
         headers: headers
     })
         .then(e => e.json())
-        //.then(drones => drones.forEach(drone => console.log(drone)))
         .then(drone => findMatch(drone))
 }
 
@@ -181,18 +174,10 @@ function findMatch(drones) {
 
 
 
-/*retry sect
-        startBtn.innerText = "Retry"
-        startBtn.classList.remove("hide")
-        localStorage.clear();
-        console.clear();
- 
-*/
-console.clear
 
 const questions = [
     {
-        q: 'FWhat is the main purpose of the drone you are buying?',
+        q: 'What is the main purpose of the drone you are buying?',
         answers: [
             {
                 text: "As a hobby/for personal use",

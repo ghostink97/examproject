@@ -32,7 +32,7 @@ body {
 
 }
 
-#main{
+main{
     margin: 0 auto;
     background-color: var(--white);
     box-sizing: border-box;
@@ -41,7 +41,8 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
-
+    max-width: 100%;
+    background-image: url(imgs/background-photo.jpeg);
 }
 
 #cCon{
@@ -52,6 +53,12 @@ body {
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0 0 10px  2px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%);
+    position: relative;
+
 }
 
 .btn-grid{
@@ -130,7 +137,6 @@ align-items: center;
     width: 30%;
     padding-top: 3px;
     padding-left: 13px;
-    margin: 6px;
     float: left;
 }
 
