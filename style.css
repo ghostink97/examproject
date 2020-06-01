@@ -90,12 +90,14 @@ main{
     outline:none;
     color:var(--blue);
     cursor: pointer;
+    margin-right: 1em;
  }
  .btn:hover{
      border-color: rgb(152, 152, 152);
      background-color: rgb(216, 216, 216);
      color: rgb(33, 56, 159);
      cursor: pointer;
+     margin-left: 2em;
  }
 
  .selectedBtn{
@@ -222,10 +224,11 @@ transform: scale(0.7);
     padding-top: 14px;
     padding-bottom: 10px;
     text-align: center;
+    color: white;
 }
 
 .Icon {
-    width: 30px;
+    width: 50px;
     padding-right: 20px;
 
 }

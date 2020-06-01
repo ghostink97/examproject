@@ -28,7 +28,6 @@ function startQuiz() {
     StartScreen.classList.add("hide");
     endScreen.classList.add("hide")
     productBtn.classList.add("hide")
-    main.style.background = '#FAFAFA';
     currentQuestionIndex = 0;
     localStorage.clear();
     priceError = false;
@@ -179,7 +178,6 @@ function findMatch(drones) {
             productBtn.classList.remove("hide")
             container.classList.remove("styleForcCon")
             container.classList.add("styleForcCon2")
-            main.style.backgroundImage = 'url(imgs/dronepic.jpg)';
             document.querySelector("#endTitle").innerText = "Your Drone Match is " + drones[i].title;
             document.querySelector("#descript-text").innerText = drones[i].description;
             document.querySelector("#imgofdrone").src = "https://examproject-2dfd.restdb.io/media/" + drones[i].image;
