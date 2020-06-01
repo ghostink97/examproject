@@ -8,6 +8,10 @@ const qElm = document.querySelector("#question");
 const aElm = document.querySelector("#answer-btns");
 const endScreen = document.querySelector("#endscreen");
 const StartScreen = document.querySelector("#startscreen");
+const container = document.querySelector("#cCon");
+const productBtn = document.querySelector("#prod-btn")
+const main = document.querySelector("main")
+
 let droneMatch = "";
 let priceError = false;
 
@@ -22,6 +26,9 @@ function startQuiz() {
     startBtn.classList.add("hide");
     Qcontent.classList.remove("hide");
     StartScreen.classList.add("hide");
+    endScreen.classList.add("hide")
+    productBtn.classList.add("hide")
+    main.style.background = '#FAFAFA';
     currentQuestionIndex = 0;
     localStorage.clear();
     priceError = false;
@@ -29,7 +36,8 @@ function startQuiz() {
     console.clear
     setNext()
 }
-
+//    container.classList.remove("styleForcCon")
+//container.classList.add("styleForcCon2")
 function setNext() {
     nextQuestionSet()
     showQuestion(questions[currentQuestionIndex]);
@@ -73,13 +81,16 @@ function selectAns(e) {
         let tagArray = myTags.split(",")
         startBtn.innerText = "Finish"
         startBtn.classList.remove("hide")
-        startBtn.addEventListener('click', () => {
+        startBtn.removeEventListener("click", startQuiz);
+
+        startBtn.onclick = () => {
             console.log(tagArray)
             console.log("this is the end")
-            Qcontent.classList.add("hide");
+            Qcontent.classList.add("hide")
+            nextBtn.classList.add("hide")
             findDroneMatch(tagArray);
             loadDrones();
-        });
+        };
     }
 }
 
@@ -132,6 +143,7 @@ function findDroneMatch(tagArray) {
 }
 
 function loadDrones() {
+    startBtn.classList.add("hide")
 
     const baseURL = "https://examproject-2dfd.restdb.io/rest/Drones";
     const headers = {
@@ -149,7 +161,7 @@ function loadDrones() {
 
 function checkForPriceError() {
     if (priceError == true) {
-        alert("No DroneMatch at current pricepoint. Matched you with the cheapest drone that fits your criteria!");
+        alert("No Drone Match at current pricepoint. Matched you with the cheapest drone that fits your criteria!");
     }
 }
 
@@ -160,8 +172,15 @@ function findMatch(drones) {
             drones[i].tag == droneMatch) {
             console.log(drones[i]);
             checkForPriceError();
+            startBtn.addEventListener("click", startQuiz);
+            startBtn.innerText = "Retry"
+            startBtn.classList.remove("hide")
             endScreen.classList.remove("hide")
-            document.querySelector("#endTitle").innerText = "Your DroneMatch is " + drones[i].title;
+            productBtn.classList.remove("hide")
+            container.classList.remove("styleForcCon")
+            container.classList.add("styleForcCon2")
+            main.style.backgroundImage = 'url(imgs/dronepic.jpg)';
+            document.querySelector("#endTitle").innerText = "Your Drone Match is " + drones[i].title;
             document.querySelector("#descript-text").innerText = drones[i].description;
             document.querySelector("#imgofdrone").src = "https://examproject-2dfd.restdb.io/media/" + drones[i].image;
             document.querySelector("#prod-link").href = drones[i].link;
@@ -177,7 +196,7 @@ function findMatch(drones) {
 
 const questions = [
     {
-        q: 'What is the main purpose of the drone you are buying?',
+        q: '1) What is the main purpose of the drone you are buying?',
         answers: [
             {
                 text: "As a hobby/for personal use",
@@ -198,7 +217,7 @@ const questions = [
 
         ]
     }, {
-        q: 'What is your budget?',
+        q: '2) What is your budget?',
         answers: [
             {
                 text: "3000 - 6000 kr.",
@@ -219,7 +238,7 @@ const questions = [
 
         ]
     }, {
-        q: 'What is most important to you?',
+        q: '3) Which of the following is most important to you?',
         answers: [
             {
                 text: "Transportability (how light it is, can it be folded?",
