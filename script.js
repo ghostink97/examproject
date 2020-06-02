@@ -49,8 +49,12 @@ function showQuestion(oneQ) {
         btn.innerText = ans.text
         btn.classList.add(ans.tag)
         btn.classList.add("btn")
+        btn.classList.add("ans-btn")
+        btn.classList.add("ans-btn")
         btn.addEventListener("click", selectAns)
+
         aElm.appendChild(btn)
+
     });
 }
 
@@ -62,6 +66,10 @@ function nextQuestionSet() {
 }
 
 function selectAns(e) {
+
+    document.querySelectorAll(".ans-btn").disabled = true;
+
+
     const selectedBtn = e.target
     selectedBtn.classList.add("selectedBtn")
     console.log(currentQuestionIndex)
