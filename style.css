@@ -22,6 +22,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    height: 100%
 
 }
 
@@ -32,7 +33,7 @@ body {
 
 }
 
-#main{
+main{
     margin: 0 auto;
     background-color: var(--white);
     box-sizing: border-box;
@@ -41,8 +42,10 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
-
+    max-width: 100%;
+    background-image: url(imgs/dronepic.jpg);
 }
+
 
 #cCon{
     text-align: center;
@@ -52,7 +55,26 @@ body {
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0 0 10px  2px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%);
+    position: relative;
 }
+
+.styleForcCon{
+    top: 50%;
+    margin-top: -150px;
+}
+
+.styleForcCon2{
+    top: 30%;
+    margin-top: -150px;
+}
+
+
+
+
 
 .btn-grid{
     display:grid;
@@ -68,12 +90,14 @@ body {
     outline:none;
     color:var(--blue);
     cursor: pointer;
+    margin-right: 1em;
  }
  .btn:hover{
      border-color: rgb(152, 152, 152);
      background-color: rgb(216, 216, 216);
      color: rgb(33, 56, 159);
      cursor: pointer;
+ 
  }
 
  .selectedBtn{
@@ -102,36 +126,50 @@ align-items: center;
     width:50%;
 }
 #prod-btn{
-    background: #4D65CB;
+    background-color: #4D65CB;
     border: 0px none;
     color: #FFF;
     display: inline-block;
     padding: 10px 20px 10px 20px;
-    text-align: center;
-    transition: filter 0.15s ease-in-out 0s;
-    width: 100%;
+    text-align: left;
     margin-bottom: 15px;
     font-size: 17px;
     font-weight: 500;
     text-transform: uppercase;
     width: auto;
+    margin: 0;
 }
 
+#prod-btn :hover
+{
+transform: scale(0.7);
+}
+
+
 #descript-text{
-    text-align: center;
+    text-align: left;
+    display: inline-block;
 }
 #prod-link{
     color: var(--white);
     text-decoration: none;
 }
 
+#cCon button{
+    display: inline-block;
+    width: auto;
+}
+
+#cCon button.hide{
+    display: none;
+}
 
 .logoImg {
     width: 30%;
     padding-top: 3px;
     padding-left: 13px;
-    margin: 6px;
     float: left;
+    margin-top: .7em;
 }
 
 .navBarIcons {
@@ -150,6 +188,12 @@ align-items: center;
     width: 35px;
 }
 
+#price{
+    color: var(--blue);
+}
+#endTitle{
+    color: var(--blue);
+}
 
 .FooterBox {
     background-color: black;
@@ -175,15 +219,16 @@ align-items: center;
 
 .SocialMediaIcons {
     background-color: black;
-    height: 50px;
+    height: 20px;
     margin: 5px;
     padding-top: 14px;
     padding-bottom: 10px;
     text-align: center;
+    color: white;
 }
 
 .Icon {
-    width: 40px;
+    width: 50px;
     padding-right: 20px;
 
 }
@@ -226,6 +271,10 @@ align-items: center;
 
     .logoImg {
         width: 15%;
+
+    }
+    #imgofdrone{
+        width:30%;
     }
 
 
@@ -243,5 +292,10 @@ align-items: center;
 
     .logoImg {
         width: 12%;
+        margin-top: 0;
+    }
+    #imgofdrone{
+        width:30%;
+
     }
 }
