@@ -111,7 +111,8 @@ function findDroneMatch(tagArray) {
         droneMatch = "expensive-hobby-drone"
     } else if (tagArray[2] = "flightAndRange") {
         droneMatch = "budget-photography-drone"
-    } if (tagArray[0] == "hobby") {
+    }
+    if (tagArray[0] == "hobby") {
         if (tagArray[1] == "cheapest") {
             droneMatch = "buget-hobby-drone"
         } else {

@@ -139,20 +139,29 @@ align-items: center;
     width: auto;
     margin: 0;
 }
-
+.ans-btn{
+    font-size: .8em;
+}
 #prod-btn :hover
 {
 transform: scale(0.7);
 }
-
+#question{
+    font-size: 1.5em;
+    color: var(--blue);
+}
 
 #descript-text{
     text-align: left;
     display: inline-block;
+    margin-left: 2em;
+    margin-right: 2em;
+    font-size: 0.8em;
 }
 #prod-link{
     color: var(--white);
     text-decoration: none;
+    margin-bottom: 1.5em;
 }
 
 #cCon button{
@@ -225,6 +234,7 @@ transform: scale(0.7);
     padding-bottom: 10px;
     text-align: center;
     color: white;
+    margin-bottom:  2em;
 }
 
 .Icon {
@@ -276,7 +286,22 @@ transform: scale(0.7);
     #imgofdrone{
         width:30%;
     }
+    .SocialMediaIcons{
+    margin-bottom:  1.3em;
+    }
+    
+#descript-text{
+    text-align: left;
+    display: inline-block;
+    margin-left: 2em;
+    margin-right: 2em;
+    font-size: 1.2em;
+    
 
+}
+.ans-btn{
+    font-size: 1.2em;
+}
 
 }
 
